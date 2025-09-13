@@ -32,7 +32,6 @@ const TopIPsList: React.FC<Props> = ({
   );
 
   const topIP = topIPs.map((item) => {
-    const total = Number(item.vulnerabilityCount ?? 0) || 1;
 
     return (
       <div key={item.ip} className={styles.item}>

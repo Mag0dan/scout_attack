@@ -60,7 +60,7 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
       title: "Поддомен",
       dataIndex: "Subdomain",
       key: "Subdomain",
-      render: (text: string, rec: Subdomain) => (
+      render: (text: string) => (
         <span className={styles.subdomain}>{text}</span>
       ),
     },

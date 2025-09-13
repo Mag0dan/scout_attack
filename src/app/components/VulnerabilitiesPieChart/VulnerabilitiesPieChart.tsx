@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Doughnut, Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import styles from "./VulnerabilitiesPieChart.module.scss";
 import { VulnerabilitiesData } from "@/types/dashboard.dto";
@@ -42,7 +42,7 @@ const VulnerabilitiesPieChart: React.FC<VulnerabilitiesPieChartProps> = ({
       },
       tooltip: {
         callbacks: {
-          label: function (context: any) {
+          label: function (context: { label: string; parsed: number }) {
             return `${context.label}: ${context.parsed}`;
           },
         },
@@ -52,7 +52,7 @@ const VulnerabilitiesPieChart: React.FC<VulnerabilitiesPieChartProps> = ({
 
   const centerTextPlugin = {
     id: "centerText",
-    beforeDraw: (chart: any) => {
+    beforeDraw: (chart: { width: number; height: number; ctx: CanvasRenderingContext2D }) => {
       const { width } = chart;
       const { height } = chart;
       const ctx = chart.ctx;

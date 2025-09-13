@@ -1,0 +1,65 @@
+# Исключаем node_modules
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Исключаем .next и build файлы
+.next
+.next/
+out/
+build
+
+# Исключаем переменные среды и конфигурационные файлы
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Исключаем git и другие VCS
+.git
+.gitignore
+.hg*
+
+# Исключаем IDE и редакторы
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Исключаем временные файлы
+.DS_Store
+Thumbs.db
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Исключаем документацию
+README.md
+*.md
+docs/
+
+# Исключаем тестовые файлы
+coverage/
+.nyc_output
+.coverage
+*.lcov
+
+# Исключаем Docker файлы (чтобы избежать рекурсии)
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Исключаем CI/CD файлы
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+
+# Исключаем лицензии
+LICENSE
+*.license

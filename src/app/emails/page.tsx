@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Table, Input, Tag, Spin, Checkbox, message } from "antd";
+import { Table, Input, Tag, Spin, Checkbox } from "antd";
 import styles from "./EmailsPage.module.scss";
 import { fetchEmails } from "@/api/emails.api";
 import { EmailItem, SearchLoc, Leak } from "@/types/emails.dto";
@@ -63,7 +63,7 @@ export default function EmailsPage() {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      render: (_: any, record: EmailItem) => (
+      render: (_: string, record: EmailItem) => (
         <span style={{ color: record.compromised_flg ? "red" : undefined }}>
           {record.email} {record.is_latest_only && <Tag color="blue">New</Tag>}
         </span>

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Button, message, Spin, Typography } from "antd";
+import { message, Spin } from "antd";
 import styles from "./ReportsPage.module.scss";
 import LastScanCard from "../components/LastScanCard/LastScanCard";
 import PreviousScansCard from "../components/PreviousScansCard/PreviousScansCard";
@@ -12,7 +12,6 @@ import {
   downloadReport,
 } from "@/api/reports.api";
 
-const { Title } = Typography;
 
 export default function ReportsPage() {
   const [data, setData] = useState<CompareReportsResponse | null>(null);

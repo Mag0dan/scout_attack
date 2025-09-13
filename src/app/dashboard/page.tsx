@@ -2,7 +2,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import TopIPsList from "../components/TopIPsList/TopIPsList";
-import VulnerabilitiesBlock from "../components/VulnerabilitiesBlock/VulnerabilitiesBlock";
 import VulnerabilitiesPieChart from "../components/VulnerabilitiesPieChart/VulnerabilitiesPieChart";
 import EmailCard from "../components/EmailCard/EmailCard";
 import SSLCertCard from "../components/SSLCertCard/SSLCertCard";

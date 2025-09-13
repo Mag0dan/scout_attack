@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Switch, Space, Image } from "antd";
+import { Form, Input, Button, Space } from "antd";
 import styles from "./Profile.module.scss";
 
 type ProfileProps = {
@@ -17,7 +17,7 @@ const Profile: React.FC<ProfileProps> = ({
 }) => {
   const confirmPasswordRules = [
     { required: true, message: "Подтвердите пароль" },
-    ({ getFieldValue }: any) => ({
+    ({ getFieldValue }: { getFieldValue: (name: string) => string }) => ({
       validator(_: unknown, value: string) {
         if (!value || getFieldValue("newPassword") === value) {
           return Promise.resolve();

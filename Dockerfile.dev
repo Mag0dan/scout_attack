@@ -1,0 +1,26 @@
+# Dockerfile для разработки
+FROM node:20-alpine
+
+# Установка pnpm
+RUN npm install -g pnpm
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем файлы конфигурации пакетов
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
+# Устанавливаем зависимости
+RUN pnpm install
+
+# Копируем остальные файлы
+COPY . .
+
+# Открываем порт
+EXPOSE 3000
+
+# Переменные среды для разработки
+ENV NODE_ENV=development
+
+# Запускаем в режиме разработки
+CMD ["pnpm", "dev"]

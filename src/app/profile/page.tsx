@@ -27,8 +27,7 @@ export default function ProfilePage() {
     try {
       const data = await fetchProfileData();
       setProfile(data);
-    } catch (err) {
-      console.error(err);
+    } catch {
       message.error("Не удалось загрузить профиль");
     } finally {
       setLoading(false);
@@ -44,7 +43,7 @@ export default function ProfilePage() {
       await changePassword(values.currentPassword, values.newPassword);
       message.success("Пароль успешно изменён");
       setShowPasswordModal(false); // закрываем модалку
-    } catch (err) {
+    } catch {
       message.error("Ошибка смены пароля");
     } finally {
       setLoadingPassword(false);

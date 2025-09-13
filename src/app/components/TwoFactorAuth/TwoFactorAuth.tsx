@@ -100,6 +100,7 @@ export default function TwoFactorAuth({ open, onClose, onSuccess }: Props) {
                 src={`${QR_CODE_API}?size=200x200&data=${encodeURIComponent(
                   qrCode
                 )}`}
+                alt="QR Code for 2FA setup"
               />
               <Text
                 type="secondary"
