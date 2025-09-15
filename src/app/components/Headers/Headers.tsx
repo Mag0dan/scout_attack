@@ -13,12 +13,12 @@ const { Title } = Typography;
 const { useBreakpoint } = Grid;
 
 const pageTitles: Record<string, string> = {
-  "/dashboard": "Панель управления",
+  "/dashboard": "Дашборд",
   "/reports": "Уязвимости по хостам",
   "/emails": "Email",
   "/login": "Вход",
   "/ssl": "SSL-сертификаты",
-  "/alike": "Домены",
+  "/alike": "Схожие домены",
   "/profile": "Профиль",
 };
 
