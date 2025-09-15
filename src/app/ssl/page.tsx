@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import { Table, Spin, Checkbox } from "antd";
 import styles from "./SslPage.module.scss";
 import { SslCert } from "@/types/ssl.dto";
@@ -15,6 +16,9 @@ function parseDateDMY(str: string): Date {
 }
 
 export default function SslPage() {
+  // Set page title
+  usePageTitle("SSL-сертификаты");
+
   const [certs, setCerts] = useState<SslCert[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<FilterType>(null);

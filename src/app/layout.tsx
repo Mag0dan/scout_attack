@@ -2,6 +2,12 @@ import "antd/dist/reset.css"; // для antd v5+ (если v4 — 'antd/dist/ant
 import "./globals.css";
 import LayoutWrapper from "./components/LayoutWrapper";
 import { App } from "antd";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "WYS - Security Dashboard",
+  description: "Vulnerability scanning and security monitoring dashboard",
+};
 
 export default function RootLayout({
   children,

@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import { Table, Spin } from "antd";
 import styles from "./AlikePage.module.scss";
 import { fetchAlike } from "@/api/alike.api";
 import { AlikeDomain } from "@/types/alike.dto";
 
 export default function AlikePage() {
+  // Set page title
+  usePageTitle("Схожие домены");
+
   const [domains, setDomains] = useState<AlikeDomain[]>([]);
   const [loading, setLoading] = useState(true);
 

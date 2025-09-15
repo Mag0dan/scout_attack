@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import { Tabs, List, Spin, App, Modal } from "antd";
 import TwoFactorAuth from "../components/TwoFactorAuth/TwoFactorAuth";
 import styles from "./ProfilePage.module.scss";
@@ -11,6 +12,9 @@ import { ProfileData } from "@/types/profile.dto";
 import { changePassword } from "@/api/auth.api";
 
 export default function ProfilePage() {
+  // Set page title
+  usePageTitle("Профиль");
+
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadingPassword, setLoadingPassword] = useState(false);

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { message, Spin } from "antd";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import styles from "./ReportsPage.module.scss";
 import LastScanCard from "../components/LastScanCard/LastScanCard";
 import PreviousScansCard from "../components/PreviousScansCard/PreviousScansCard";
@@ -14,6 +15,9 @@ import {
 
 
 export default function ReportsPage() {
+  // Set page title
+  usePageTitle("Уязвимости по хостам");
+
   const [data, setData] = useState<CompareReportsResponse | null>(null);
   const [selectedReports, setSelectedReports] = useState<number[]>([]);
   const [loading, setLoading] = useState(true);

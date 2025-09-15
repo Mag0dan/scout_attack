@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import { Table, Input, Tag, Spin, Checkbox } from "antd";
 import styles from "./EmailsPage.module.scss";
 import { fetchEmails } from "@/api/emails.api";
@@ -9,6 +10,9 @@ import { EmailItem, SearchLoc, Leak } from "@/types/emails.dto";
 const { Search } = Input;
 
 export default function EmailsPage() {
+  // Set page title
+  usePageTitle("Email");
+
   const [emails, setEmails] = useState<EmailItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [filteredEmails, setFilteredEmails] = useState<EmailItem[]>([]);

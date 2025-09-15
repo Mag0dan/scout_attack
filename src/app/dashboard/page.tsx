@@ -1,6 +1,7 @@
 // src/app/DashboardPage.tsx
 "use client";
 import { useEffect, useState } from "react";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import TopIPsList from "../components/TopIPsList/TopIPsList";
 import VulnerabilitiesPieChart from "../components/VulnerabilitiesPieChart/VulnerabilitiesPieChart";
 import EmailCard from "../components/EmailCard/EmailCard";
@@ -26,6 +27,9 @@ function normalizeVulnerabilities(
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Set page title
+  usePageTitle("Дашборд");
 
   useEffect(() => {
     fetchDashboardData()

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import { Form, Input, Button, App, Tooltip } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import styles from "./LoginPage.module.scss";
@@ -10,6 +11,9 @@ import { fetchLoginUser, verify2FA } from "@/api/auth.api";
 export default function LoginPage() {
   const router = useRouter();
   const { message } = App.useApp();
+
+  // Set page title
+  usePageTitle("Вход");
 
   const [require2fa, setRequire2fa] = useState(false);
 
