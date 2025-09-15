@@ -85,7 +85,7 @@ async function proxyRequest(
     const requestOptions: RequestInit = {
       method,
       headers,
-      // @ts-ignore - Node.js specific agent option
+      // @ts-expect-error - Node.js specific agent option
       agent: httpsAgent,
     };
 
