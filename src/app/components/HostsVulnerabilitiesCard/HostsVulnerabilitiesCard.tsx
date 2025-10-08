@@ -159,7 +159,7 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
 
       <Drawer
         title={"Информация об уязвимости"}
-        placement="left"
+        placement="right"
         width={420}
         onClose={closeDrawer}
         open={drawerVisible}

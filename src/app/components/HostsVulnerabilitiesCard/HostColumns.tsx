@@ -3,6 +3,7 @@ import { PortInfo } from "@/types/Reports.dto";
 import { ColumnsType } from "antd/es/table";
 import { renderGroupedItems } from "./renderGroupedItems";
 import { getCritColor } from "@/utils/getCritColor";
+import styles from "./HostsVulnerabilitiesCard.module.scss";
 
 const renderSingleColumn = (
   items: Array<{ Name: string; CritLevel: string }>,
@@ -12,7 +13,9 @@ const renderSingleColumn = (
     {items.map((item) => (
       <div
         key={item.Name}
-        className={getCritColor(item.CritLevel)}
+        className={`${getCritColor(item.CritLevel)} ${
+          onClick ? styles.clickableItem : ""
+        }`}
         style={{
           fontWeight: "600",
           cursor: onClick ? "pointer" : "default",
