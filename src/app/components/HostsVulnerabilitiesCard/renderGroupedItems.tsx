@@ -58,7 +58,11 @@ export function renderGroupedItems(items: Item[], options: Options = {}) {
               >
                 {item.Name}
                 {item.newFlag && !item.oldFlag && (
-                  <Tag color="blue" style={{ fontSize: "10px", padding: "0 4px", margin: 0 }}>
+                  <Tag
+                    color="blue"
+                    className={styles.hiddenNewTag}
+                    style={{ fontSize: "10px", padding: "0 4px", margin: 0 }}
+                  >
                     New
                   </Tag>
                 )}

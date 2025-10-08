@@ -56,7 +56,6 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
 
   const closeDrawer = () => {
     setDrawerVisible(false);
-    setVulnData(null);
   };
 
   const openEncryptDrawer = async (name: string) => {
@@ -75,7 +74,6 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
 
   const closeEncryptDrawer = () => {
     setEncryptDrawerVisible(false);
-    setEncryptData(null);
   };
 
   // колонки поддоменов
@@ -163,6 +161,7 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
         width={420}
         onClose={closeDrawer}
         open={drawerVisible}
+        afterOpenChange={(open) => !open && setVulnData(null)}
       >
         {loading ? (
           <Spin />
@@ -199,6 +198,7 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
         width={420}
         onClose={closeEncryptDrawer}
         open={encryptDrawerVisible}
+        afterOpenChange={(open) => !open && setEncryptData(null)}
       >
         {encryptLoading ? (
           <Spin />
