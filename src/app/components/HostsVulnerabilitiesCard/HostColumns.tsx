@@ -4,13 +4,20 @@ import { ColumnsType } from "antd/es/table";
 import { renderGroupedItems } from "./renderGroupedItems";
 import { getCritColor } from "@/utils/getCritColor";
 
-const renderSingleColumn = (items: Array<{ Name: string; CritLevel: string }>) => (
+const renderSingleColumn = (
+  items: Array<{ Name: string; CritLevel: string }>,
+  onClick?: (name: string) => void
+) => (
   <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
     {items.map((item) => (
       <div
         key={item.Name}
         className={getCritColor(item.CritLevel)}
-        style={{ fontWeight: "600" }}
+        style={{
+          fontWeight: "600",
+          cursor: onClick ? "pointer" : "default",
+        }}
+        onClick={onClick ? () => onClick(item.Name) : undefined}
       >
         {item.Name}
       </div>
@@ -19,7 +26,8 @@ const renderSingleColumn = (items: Array<{ Name: string; CritLevel: string }>) =
 );
 
 export const getHostColumns = (
-  onVulnClick: (name: string) => void
+  onVulnClick: (name: string) => void,
+  onEncryptClick: (name: string) => void
 ): ColumnsType<PortInfo> => [
   { title: "Порт", dataIndex: "Port", key: "Port" },
   { title: "Сервис", dataIndex: "Service", key: "Service" },
@@ -30,7 +38,8 @@ export const getHostColumns = (
     title: "Шифрование",
     width: 125,
     key: "EncTypes",
-    render: (_, record) => renderSingleColumn(Object.values(record.EncTypes)),
+    render: (_, record) =>
+      renderSingleColumn(Object.values(record.EncTypes), onEncryptClick),
   },
   {
     title: "Уязвимости",

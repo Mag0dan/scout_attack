@@ -11,9 +11,10 @@ import {
   HostCompare,
   PortInfo,
   VulnDetail,
+  EncryptionDetail,
   Subdomain, // <- убедись, что тип есть в Reports.dto
 } from "@/types/Reports.dto";
-import { fetchVuln } from "@/api/vulners.api";
+import { fetchVuln, fetchEncrypt } from "@/api/vulners.api";
 
 const { Title } = Typography;
 
@@ -30,6 +31,10 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [vulnData, setVulnData] = useState<VulnDetail | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const [encryptDrawerVisible, setEncryptDrawerVisible] = useState(false);
+  const [encryptData, setEncryptData] = useState<EncryptionDetail | null>(null);
+  const [encryptLoading, setEncryptLoading] = useState(false);
 
   const toggleHost = (ip: string) => {
     setExpandedHosts((prev) => ({ ...prev, [ip]: !prev[ip] }));
@@ -54,10 +59,29 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
     setVulnData(null);
   };
 
+  const openEncryptDrawer = async (name: string) => {
+    setEncryptDrawerVisible(true);
+    setEncryptLoading(true);
+    try {
+      const data = await fetchEncrypt<EncryptionDetail>(name);
+      setEncryptData(data);
+    } catch (err) {
+      console.error(err);
+      setEncryptData(null);
+    } finally {
+      setEncryptLoading(false);
+    }
+  };
+
+  const closeEncryptDrawer = () => {
+    setEncryptDrawerVisible(false);
+    setEncryptData(null);
+  };
+
   // колонки поддоменов
   const subdomainColumns = [
     {
-      title: "Поддомен",
+      title: "Поддомен/ssl",
       dataIndex: "Subdomain",
       key: "Subdomain",
       render: (text: string) => (
@@ -109,7 +133,7 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
                   pagination={false}
                   rowKey={(row) => row.Port}
                   dataSource={Object.values(host.Ports)}
-                  columns={getHostColumns(openVulnDrawer)}
+                  columns={getHostColumns(openVulnDrawer, openEncryptDrawer)}
                   
                 />
                 {/* Левая колонка — Поддомены */}
@@ -162,6 +186,36 @@ const HostVulnerabilitiesCard: React.FC<HostsVulnerabilitiesCardProps> = ({
             </p>
             <p>
               <strong>CVSS Version:</strong> {vulnData.cvss_version}
+            </p>
+          </div>
+        ) : (
+          <p>Не удалось загрузить данные</p>
+        )}
+      </Drawer>
+
+      <Drawer
+        title={"Информация о шифровании"}
+        placement="right"
+        width={420}
+        onClose={closeEncryptDrawer}
+        open={encryptDrawerVisible}
+      >
+        {encryptLoading ? (
+          <Spin />
+        ) : encryptData ? (
+          <div>
+            <p>
+              <strong>Название: </strong>
+              {encryptData.name}
+            </p>
+            <p>
+              <strong>Описание:</strong> {encryptData.description}
+            </p>
+            <p>
+              <strong>Серьёзность:</strong> {encryptData.severity}
+            </p>
+            <p>
+              <strong>Уровень критичности:</strong> {encryptData.crit_level}
             </p>
           </div>
         ) : (

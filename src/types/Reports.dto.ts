@@ -55,3 +55,10 @@ export interface VulnDetail {
   cvss_vector: string;
   cvss_version: string;
 }
+
+export interface EncryptionDetail {
+  name: string;
+  description: string;
+  severity: string;
+  crit_level: string;
+}
